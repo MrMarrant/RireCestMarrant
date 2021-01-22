@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification du nombres de participant sur l'étude{% endblock %}
+
+{% block body %}
+<h1>Indiquer le nombre exacte</h1>
+{% if app.user %}
+ {{ form_start(form) }}
+ {{ form_row(form.totalpersonneetude) }}
+ <br>
+ <button type="submit" class="btn btn-success">Confirmer </button>    
+ {{ form_end(form) }} 
+{% else %}
+
+<a>Veuillez d'abord vous connectez sur un compte valide </a>
+<a>Pour accéder au contenu des études </a>
+
+{% endif %}
+
+
+{% endblock %}

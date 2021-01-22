@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Etudes{% endblock %}
+
+{% block body %}
+<h1>Liste des Plages en Lien avec l'{{ etudes.titreetude }}</h1>
+{% if app.user %}
+
+
+   {% set array = [] %}
+
+   {% for etude_has_plage in etude_has_plages %}
+      {% if  etude_has_plage.idplage not in array %}
+
+         <div class="card">
+         <div class="card-header">
+
+            {% for plage in plages %}
+
+               {% if plage.idplage == etude_has_plage.idplage %}
+                  {{ plage.nomplage }}
+               {% endif %}
+               
+            {% endfor %} 
+
+            </div>
+            <div class="card-body">
+               {# <h5 class="card-title">{{ etude.titreetude }}</h5> #}
+               <p class="card-text">Id De l'étude à virer un jour : {{ etude_has_plage.idetude }}</p>
+                  <p class="card-text">Id De la Plage à virer un jour : {{ etude_has_plage.idplage }}</p>
+               <a href={{ path("zone",{"idEtude":etude_has_plage.idetude,"idPlage":etude_has_plage.idplage}) }} class="btn btn-info">Zone en liens avec La Plage</a> 
+            </div>
+            </div>  
+
+            <br>
+         
+         {% endif %} 
+         {% set array = array|merge([etude_has_plage.idplage]) %}  
+   {% endfor %}
+
+    <br> 
+{% for role in app.user.roles  %}
+  {%  if role == 'ROLE_ADMIN' %}
+   <div class="card">
+      <h5 class="card-header">Ajouter une Plage à l'étude</h5>
+      <div class="card-body">
+         <h5 class="card-title"> </h5>
+         <p class="card-text"> </p>
+         <a href={{ path("ajout_plage_has_etude",{"idEtude":etudes.idetude}) }} class="btn btn-info">Ajouter une Plage à l'étude</a>    
+      </div>
+   </div>
+   {% endif %}
+{% endfor %}
+
+ <br> 
+
+{% else %}
+
+<a>Veuillez d'abord vous connectez sur un compte valide </a>
+<a>Pour accéder au contenu des études </a>
+
+{% endif %}
+{% endblock %}

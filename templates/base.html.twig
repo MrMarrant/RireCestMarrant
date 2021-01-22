@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %} - Gestion des Etudes </title>
+
+            <link rel="icon" type="image/png" href="https://i.pinimg.com/originals/b3/0c/73/b30c73dd972893d04dc57d0ed906d29b.gif" />
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        {% block stylesheets %}<link href="{{ asset('assets/css/main.css') }}" type="text/css" rel="stylesheet" />{% endblock %}
+    </head>
+    
+    <body >
+   
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="/">Accueil</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+    
+      <li >
+        <a class="nav-link" href={{ path('etudes') }}>Etudes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href={{ path('plage') }}>Plages</a>
+      </li>
+      {# <li class="nav-item">
+        <a class="nav-link" href={{ path('historique') }}>Historique</a>
+      </li> #}
+        <li class="nav-item">
+        <a class="nav-link" href={{ path('espece') }}>Especes</a>
+        <li>
+        {% if not app.user %}
+       <li class="nav-item">
+        <a class="nav-link" href={{ path('security_registration') }}>Inscription</a>
+        <li>
+        {% endif %}
+
+    </ul>
+    {% if not app.user %}
+    <a class="navbar-brand" href={{ path('security_login') }}>Connexion</a>
+     {% else %}
+    <a class="navbar-brand" href={{ path('security_logout') }}>Déconnexion</a>
+    {% endif %}
+  </div>
+</nav>
+    <div class=" container">
+        <br>
+        {% block body %}Home{% endblock %}
+    </div>
+
+<script src="https://kit.fontawesome.com/edc8d5fc95.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+{% block javascripts %}{% endblock %}
+</body>
+</html>

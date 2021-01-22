@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Etudes{% endblock %}
+
+{% block body %}
+<h1>Liste des Etudes</h1>
+{% if app.user %}
+
+<tbody>
+{% set foo = 0 %}
+{% for etude in etudes %}
+
+<div class="card">
+  <div class="card-header">
+    {{ etude.titreetude }}
+  </div>
+  <div class="card-body">
+   <h2> Date de l'étude : <b> {{ dates[foo] }} </b></h2>
+   <h3>Nombre de Participant : <b>{{ etude.totalpersonneetude }} </b>Personnes aux totals</h3>
+
+    <p class="card-text">Id De l'étude à virer un jour : {{ etude.idetude }}</p>
+    <a href={{ path("etude_has_plage",{"id":etude.idetude}) }} class="btn btn-success">Plage en liens avec L'étude</a>
+    <a href={{ path("update_date",{"idEtude":etude.idetude}) }} class="btn btn-info">Modifier la date de l'étude</a>  
+    <a href={{ path("update_participant",{"idEtude":etude.idetude}) }} class="btn btn-info">Indiquer le nombre de participant</a> 
+    <a href={{ path("historique",{"idEtude":etude.idetude}) }} class="btn btn-info">Historique de l'étude</a>   
+
+  </div>
+</div>
+
+<br>
+
+ {% set foo = foo + 1 %}   
+{% endfor %}
+
+</tbody>
+</table>
+
+ <br> 
+{% for role in app.user.roles  %}
+  {%  if role == 'ROLE_ADMIN' %}
+    <div class="card">
+      <h5 class="card-header">Ajouter une nouvelle Etude</h5>
+      <div class="card-body">
+        <h5 class="card-title"> </h5>
+        <p class="card-text"> </p>
+        <a href={{ path("ajout_etude") }} class="btn btn-info">Ajouter une nouvelle étude</a>
+      </div>
+    </div>
+  {% endif %}
+{% endfor %}
+ 
+ <br> 
+  
+{% else %}
+
+<a>Veuillez d'abord vous connectez sur un compte valide </a>
+<a>Pour accéder au contenu des études </a>
+
+{% endif %}
+
+
+{% endblock %}
+

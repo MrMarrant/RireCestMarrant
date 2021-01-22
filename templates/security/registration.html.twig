@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{#{% block stylesheets %}#}
+{# <link href="{{ asset('assets/css/main.css') }}" type="text/css" rel="stylesheet" />#}
+{#{% endblock %}#}
+{% block body %}
+ <br>
+<h1> Inscription </h1>
+ <blockquote>
+ Je préviens, je ne peux pas voir vos mots de passe, ils sont tous "chifrés" comme préfère l'entendre Sephy, je jure sur Allah. <br>
+ Par contre je peux voir tous les noms d'utilisateurs et Mails.
+ </blockquote>
+ <br>
+
+ {{ form_start(form) }}
+
+{{ form_row(form.email, {'label': 'Email', 'attr': {'placeholder': 'Email ...'}}) }}
+{{ form_row(form.username, {'label': 'Nom d\'utilisateur', 'attr': {'placeholder': 'Nom d\'utilisateur ...'}}) }}
+{{ form_row(form.password, {'label': 'Mot De passe', 'attr': {'placeholder': 'Mot De passe ...'}}) }}
+{{ form_row(form.confirm_password, {'label': 'Confirmez le Mot De passe', 'attr': {'placeholder': 'Confirmez le Mot De passe ...'}}) }}
+{# {{ form_row(form.idMetier, {'label': 'idMetier', 'attr': {'placeholder': 'idMetier ...'}}) }}#}
+
+ <br>
+<button type="submit" class="btn btn-success">Inscription </button>
+ {{ form_end(form) }}
+ {% endblock %}

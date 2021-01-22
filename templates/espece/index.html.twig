@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Especes{% endblock %}
+
+{% block body %}
+<h1>Liste des Especes</h1>
+{% if app.user %}
+
+<tbody>
+{% for espece in especes %}
+
+<div class="card">
+  <div class="card-header">
+    {{ espece.nomespece }}
+  </div>
+  <div class="card-body">
+   <h2> Nombre : <b> {{ espece.nombretotale }} </b></h2>
+  
+
+
+  </div>
+</div>
+
+<br>
+ 
+{% endfor %}
+
+</tbody>
+</table>
+
+ <br> 
+
+{% for role in app.user.roles  %}
+  {%  if role == 'ROLE_ADMIN' %}
+  <div class="card">
+    <h5 class="card-header">Ajouter une nouvelle Espece</h5>
+    <div class="card-body">
+      <h5 class="card-title"> </h5>
+      <p class="card-text"> </p>
+      <a href={{ path("ajout_espece") }} class="btn btn-info">Ajouter une nouvelle Espece</a>   
+    </div>
+  </div>
+
+ <br> 
+ {% endif %}
+{% endfor %}
+
+{% else %}
+
+<a>Veuillez d'abord vous connectez sur un compte valide </a>
+<a>Pour accéder au contenu des études </a>
+
+{% endif %}
+
+
+{% endblock %}
+
