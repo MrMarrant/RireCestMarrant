@@ -1,8 +1,8 @@
 ### Web Server Symfony, you can see it here :
 
-[![WebSite]](http://rirecestmarrant.fr/t)
+[RireCestMarrant.fr](http://rirecestmarrant.fr)
 
-## Instruction
+## Install
 
 Comming soon!
 
