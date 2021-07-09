@@ -1,0 +1,20 @@
+#   Redirect permanent   https://rirecestmarrant.fr
+   RewriteEngine on
+   RewriteBase /
+   
+   RewriteCond %{HTTPS} !^/public/
+   RewriteRule ^(.*)$ /public/$1 [L]
+
+
+
+#<VirtualHost *:80>
+#
+#
+#    DocumentRoot /www/public
+#
+#    <Directory /www/public>
+#        AllowOverride None
+#
+#        # Copy .htaccess contents here
+#    </Directory>
+#</VirtualHost>

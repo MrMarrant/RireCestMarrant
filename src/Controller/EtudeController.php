@@ -36,6 +36,14 @@ class EtudeController extends AbstractController
         return $this->render('html/pageDuRire.html.twig');
     }
 
+    /**
+     * @Route("/recommendationHilarante", name="recommendationHilarante")
+     */
+    public function recommendationHilarante()
+    {
+        return $this->render('html/recommendationHilarante.html.twig');
+    }
+
 
     /**
      * @Route("/etude", name="etudes")
